@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/cwww3/go-tools/logger"
+	"github.com/cwww3/im/internal/router"
+	"github.com/gin-gonic/gin"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"net/http"
@@ -19,12 +21,19 @@ func init() {
 	env = pflag.String("env", "prod", "开发环境")
 	pflag.Parse()
 	loadConfig()
-	logger.InitLogger(viper.GetString("log.path"),viper.GetString("log.name"))
+	logger.InitLogger(viper.GetString("log.path"), viper.GetString("log.name"))
 }
 
 func main() {
+	e := gin.Default()
+	e.Static("/static", "views/static")
+	e.LoadHTMLGlob("views/pages/*.html")
+
+	router.InitRouter(e)
+
 	server := http.Server{
-		Addr: fmt.Sprintf("%v:%v", viper.GetString("server.host"), viper.GetInt("server.port")),
+		Addr:    fmt.Sprintf("%v:%v", viper.GetString("server.host"), viper.GetInt("server.port")),
+		Handler: e,
 	}
 	go func() {
 		logger.Infof("server run listening url=%v env=%v", fmt.Sprintf("http://%v:%v", viper.GetString("server.host"), viper.GetString("server.port")), *env)
@@ -39,12 +48,11 @@ func main() {
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	select {
 	case <-sigs:
-		ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+		ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
 		err := server.Shutdown(ctx)
 		if err != nil {
 			logger.Errorf("server shutdown err = %v", err)
 		} else {
-			cancel()
 			logger.Infof("server shutdown gracefully")
 		}
 	}
