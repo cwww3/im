@@ -72,6 +72,8 @@ github.com/coreos/go-semver v0.3.0/go.mod h1:nnelYz7RCh+5ahJtPPxZlU+153eP4D4r3Ee
 github.com/coreos/go-systemd/v22 v22.3.2/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/cwww3/go-tools v0.0.0-20211128030321-41c95bd38f38 h1:fUo5Yek8HOiOlG+K1yUamwocJqSahNhT3KaP+niSW3k=
 github.com/cwww3/go-tools v0.0.0-20211128030321-41c95bd38f38/go.mod h1:6bkfVqr3fxa8gyHlbdIogfit2WyiEZNRuuURmaJNEZk=
+github.com/cwww3/go-tools v0.0.0-20220211082814-247696fcd05e h1:oxFmYXC+7m2vjk2i4ZnghTAWEQoyLzX1bdpWvgYL/Jk=
+github.com/cwww3/go-tools v0.0.0-20220211082814-247696fcd05e/go.mod h1:6bkfVqr3fxa8gyHlbdIogfit2WyiEZNRuuURmaJNEZk=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

@@ -3,7 +3,7 @@ module github.com/cwww3/im
 go 1.16
 
 require (
-	github.com/cwww3/go-tools v0.0.0-20211128030321-41c95bd38f38
+	github.com/cwww3/go-tools v0.0.0-20220211082814-247696fcd05e
 	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-gonic/gin v1.7.7
 	github.com/google/wire v0.5.0

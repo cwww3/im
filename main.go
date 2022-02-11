@@ -48,12 +48,10 @@ func main() {
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	select {
 	case <-sigs:
-		ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
-		err := server.Shutdown(ctx)
-		if err != nil {
-			logger.Errorf("server shutdown err = %v", err)
-		} else {
-			logger.Infof("server shutdown gracefully")
+		ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+		defer cancel()
+		if err := server.Shutdown(ctx); err != nil {
+			logger.Fatalf("shutdown failed err = %v", err)
 		}
 	}
 }
